@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<title>File Archive Commander</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="titlebar">
+    <span class="titlebar-name">FILE ARCHIVE COMMANDER</span>
+    <div class="search">
+      <input id="search-input" type="text" placeholder="pretraga na trenutnom disku... (Enter)" autocomplete="off">
+    </div>
+  </header>
+
+  <nav id="disk-bar" class="disk-bar" aria-label="Diskovi"></nav>
+
+  <div class="status-row">
+    <div id="breadcrumb" class="breadcrumb"></div>
+    <div id="search-filters" class="search-filters"></div>
+  </div>
+
+  <main class="commander">
+    <section class="pane" id="pane-folders" data-pane="folders">
+      <div class="pane-header">Folderi</div>
+      <div class="pane-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-name">Ime</th>
+              <th class="col-size">Stavki</th>
+            </tr>
+          </thead>
+          <tbody id="folders-body">
+            <tr><td class="empty" colspan="2">Izaberi disk gore.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="pane" id="pane-files" data-pane="files">
+      <div class="pane-header">Fajlovi</div>
+      <div class="pane-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-name">Ime</th>
+              <th class="col-cat">Tip</th>
+              <th class="col-size">Veličina</th>
+              <th class="col-date">Izmenjeno</th>
+            </tr>
+          </thead>
+          <tbody id="files-body">
+            <tr><td class="empty" colspan="4">&nbsp;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="detail-bar" class="detail-bar" aria-live="polite"></div>
+
+  <footer class="fkeys">
+    <span><b>Tab</b> promeni kolonu</span>
+    <span><b>&uarr;&darr;</b> kretanje</span>
+    <span><b>Enter/2x klik</b> folder: otvori &middot; fajl: pokaži u Exploreru</span>
+    <span><b>Backspace</b> nazad</span>
+    <span><b>F5</b> osveži</span>
+  </footer>
+
+  <div id="disk-edit-overlay" class="modal-overlay hidden">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="disk-edit-title">
+      <div class="modal-header" id="disk-edit-title">Uredi disk</div>
+      <div class="modal-body">
+        <label class="field">
+          <span>Naziv</span>
+          <input id="disk-edit-label" type="text" maxlength="100" autocomplete="off">
+        </label>
+        <label class="field">
+          <span>Opis</span>
+          <textarea id="disk-edit-description" rows="4" maxlength="500" placeholder="npr. koji je ovo disk, šta je na njemu, kad je poslednji put korišćen..."></textarea>
+        </label>
+      </div>
+      <div class="modal-actions">
+        <button id="disk-edit-save" class="btn btn-primary">Sačuvaj</button>
+        <button id="disk-edit-cancel" class="btn">Otkaži</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

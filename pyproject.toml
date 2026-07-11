@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "file-archive-system"
+version = "0.1.0"
+description = "File Archive Catalog & Disk Intelligence System"
+requires-python = ">=3.10"
+dependencies = ["openpyxl>=3.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+hdscan = "file_archive.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["file_archive*"]
+
+[tool.setuptools.package-data]
+"file_archive.webui" = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
